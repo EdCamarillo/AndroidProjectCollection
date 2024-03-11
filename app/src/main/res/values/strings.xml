@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidProjectCollection</string>
+    <string name="myName">Edward Camarillo</string>
+    <string name="greeting">Hello World!</string>
+    <string name="app_title">Instagram</string>
+    <string name="post_like">Like</string>
+    <string name="post_comment">Comment</string>
+    <string name="post_share">Share</string>
+    <string name="calculator_hint"><font size="64">0</font></string>
+</resources>
