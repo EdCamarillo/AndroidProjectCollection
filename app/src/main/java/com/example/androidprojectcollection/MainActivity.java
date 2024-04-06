@@ -10,9 +10,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn1;
-    Button btn2;
-    Button btn3;
+    Button btn1, btn2, btn3, btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +35,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn3 = (Button) findViewById(R.id.btnCalculatorExercsie);
+        btn3 = (Button) findViewById(R.id.btnCalculatorExercise);
         btn3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(MainActivity.this, CalculatorExercise.class);
+                startActivity(intent1);
+            }
+        });
+
+        btn4 = (Button) findViewById(R.id.btnConnect3Exercise);
+        btn4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(MainActivity.this, Connect3Exercise.class);
                 startActivity(intent1);
             }
         });
