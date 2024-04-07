@@ -60,14 +60,19 @@ public class Connect3Exercise extends AppCompatActivity {
                     }
                 }
 
+                if (!buttons[0][columnIndex].getText().toString().isEmpty()) {
+                    // Column is full, do nothing
+                    return;
+                }
+
                 for (int i = 4; i >= 0; i--) {
                     if (buttons[i][columnIndex].getText().toString().isEmpty()) {
                         if (player1Turn) {
                             buttons[i][columnIndex].setText("X");
-                            buttons[i][columnIndex].setBackground(getDrawable(R.drawable.btn_black)); // Player 1 color
+                            buttons[i][columnIndex].setBackground(getDrawable(R.drawable.btn_black));
                         } else {
                             buttons[i][columnIndex].setText("O");
-                            buttons[i][columnIndex].setBackground(getDrawable(R.drawable.btn_red));// Player 2 color
+                            buttons[i][columnIndex].setBackground(getDrawable(R.drawable.btn_red));
                         }
                         break;
                     }
@@ -151,6 +156,7 @@ public class Connect3Exercise extends AppCompatActivity {
 
     private void draw() {
         textViewPlayer.setText("Draw!");
+        disableButtons();
     }
 
     private void disableButtons() {
