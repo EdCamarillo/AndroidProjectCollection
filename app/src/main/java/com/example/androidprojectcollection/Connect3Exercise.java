@@ -2,6 +2,7 @@ package com.example.androidprojectcollection;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,117 +10,142 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Connect3Exercise extends AppCompatActivity {
-
-    private Button[][] buttons = new Button[5][5];
-    private boolean player1Turn = true;
-    private int roundCount;
-    private TextView textViewPlayer;
-
-    @Override
+    Button[][] buttons = new Button[5][5];
+    boolean player1Turn = true;
+    int roundCount;
+    TextView textViewPlayer;
+    Button buttonReset;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect3_exercise);
 
         textViewPlayer = findViewById(R.id.textViewPlayer);
+        buttonReset = findViewById(R.id.buttonReset);
 
-        // Initialize buttons and set click listeners
-        buttons[0][0] = findViewById(R.id.btn1);
-        buttons[0][1] = findViewById(R.id.btn2);
-        buttons[0][2] = findViewById(R.id.btn3);
-        buttons[0][3] = findViewById(R.id.btn4);
-        buttons[0][4] = findViewById(R.id.btn5);
+        int[] buttonIds = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5,
+                R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btn10,
+                R.id.btn11, R.id.btn12, R.id.btn13, R.id.btn14, R.id.btn15,
+                R.id.btn16, R.id.btn17, R.id.btn18, R.id.btn19, R.id.btn20,
+                R.id.btn21, R.id.btn22, R.id.btn23, R.id.btn24, R.id.btn25};
 
-        buttons[1][0] = findViewById(R.id.btn6);
-        buttons[1][1] = findViewById(R.id.btn7);
-        buttons[1][2] = findViewById(R.id.btn8);
-        buttons[1][3] = findViewById(R.id.btn9);
-        buttons[1][4] = findViewById(R.id.btn10);
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                buttons[j][i] = findViewById(buttonIds[i * 5 + j]);
+            }
+        }
 
-        Button buttonReset = findViewById(R.id.buttonReset);
+        topButtonClickListener(buttons[0][0]);
+        topButtonClickListener(buttons[0][1]);
+        topButtonClickListener(buttons[0][2]);
+        topButtonClickListener(buttons[0][3]);
+        topButtonClickListener(buttons[0][4]);
+
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 resetGame();
             }
         });
     }
 
-    public void onClick(View v) {
-        if (!((Button) v).getText().toString().equals("")) {
-            return;
-        }
+    private void topButtonClickListener(Button button) {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int columnIndex = -1;
+                for (int j = 0; j < 5; j++) {
+                    if (buttons[0][j] == button) {
+                        columnIndex = j;
+                        break;
+                    }
+                }
 
-        if (player1Turn) {
-            ((Button) v).setText("X");
-            ((Button) v).setTextColor(Color.parseColor("#FF4081")); // Player 1 color
-            textViewPlayer.setText("Player 2's Turn");
-        } else {
-            ((Button) v).setText("O");
-            ((Button) v).setTextColor(Color.parseColor("#3F51B5")); // Player 2 color
-            textViewPlayer.setText("Player 1's Turn");
-        }
+                for (int i = 4; i >= 0; i--) {
+                    if (buttons[i][columnIndex].getText().toString().isEmpty()) {
+                        if (player1Turn) {
+                            buttons[i][columnIndex].setText("X");
+                            buttons[i][columnIndex].setBackground(getDrawable(R.drawable.btn_black)); // Player 1 color
+                        } else {
+                            buttons[i][columnIndex].setText("O");
+                            buttons[i][columnIndex].setBackground(getDrawable(R.drawable.btn_red));// Player 2 color
+                        }
+                        break;
+                    }
+                }
 
-        roundCount++;
+                roundCount++;
 
-        if (checkForWin()) {
-            if (player1Turn) {
-                player1Wins();
-            } else {
-                player2Wins();
+                if (checkForWin()) {
+                    if (player1Turn) {
+                        player1Wins();
+                    } else {
+                        player2Wins();
+                    }
+                } else if (roundCount == 25) {
+                    draw();
+                } else {
+                    player1Turn = !player1Turn;
+                    textViewPlayer.setText(player1Turn ? "Black's Turn" : "Red's Turn");
+                }
             }
-        } else if (roundCount == 25) {
-            draw();
-        } else {
-            player1Turn = !player1Turn;
-        }
+        });
     }
 
     private boolean checkForWin() {
-        String[][] field = new String[5][5];
-
-        // Populate field array with button texts
+        // Check horizontally
         for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (!buttons[i][j].getText().toString().isEmpty() &&
+                        buttons[i][j].getText().toString().equals(buttons[i][j + 1].getText().toString()) &&
+                        buttons[i][j].getText().toString().equals(buttons[i][j + 2].getText().toString())) {
+                    return true; // Horizontal win
+                }
+            }
+        }
+
+        // Check vertically
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 5; j++) {
-                field[i][j] = buttons[i][j].getText().toString();
+                if (!buttons[i][j].getText().toString().isEmpty() &&
+                        buttons[i][j].getText().toString().equals(buttons[i + 1][j].getText().toString()) &&
+                        buttons[i][j].getText().toString().equals(buttons[i + 2][j].getText().toString())) {
+                    return true; // Vertical win
+                }
             }
         }
 
-        // Check rows
-        for (int i = 0; i < 5; i++) {
-            if (field[i][0].equals(field[i][1]) && field[i][0].equals(field[i][2])
-                    && !field[i][0].equals("")) {
-                return true;
+        // Check diagonally (top-left to bottom-right)
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (!buttons[i][j].getText().toString().isEmpty() &&
+                        buttons[i][j].getText().toString().equals(buttons[i + 1][j + 1].getText().toString()) &&
+                        buttons[i][j].getText().toString().equals(buttons[i + 2][j + 2].getText().toString())) {
+                    return true; // Diagonal win
+                }
             }
         }
 
-        // Check columns
-        for (int i = 0; i < 5; i++) {
-            if (field[0][i].equals(field[1][i]) && field[0][i].equals(field[2][i])
-                    && !field[0][i].equals("")) {
-                return true;
+        // Check diagonally (top-right to bottom-left)
+        for (int i = 0; i < 3; i++) {
+            for (int j = 4; j > 1; j--) {
+                if (!buttons[i][j].getText().toString().isEmpty() &&
+                        buttons[i][j].getText().toString().equals(buttons[i + 1][j - 1].getText().toString()) &&
+                        buttons[i][j].getText().toString().equals(buttons[i + 2][j - 2].getText().toString())) {
+                    return true; // Diagonal win
+                }
             }
         }
 
-        // Check diagonals
-        if (field[0][0].equals(field[1][1]) && field[0][0].equals(field[2][2])
-                && !field[0][0].equals("")) {
-            return true;
-        }
-        if (field[0][2].equals(field[1][1]) && field[0][2].equals(field[2][0])
-                && !field[0][2].equals("")) {
-            return true;
-        }
-
-        return false;
+        return false; // No win
     }
 
     private void player1Wins() {
-        textViewPlayer.setText("Player 1 wins!");
+        textViewPlayer.setText("Black wins!");
         disableButtons();
     }
 
     private void player2Wins() {
-        textViewPlayer.setText("Player 2 wins!");
+        textViewPlayer.setText("Red wins!");
         disableButtons();
     }
 
@@ -128,6 +154,7 @@ public class Connect3Exercise extends AppCompatActivity {
     }
 
     private void disableButtons() {
+        // Disable all buttons
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 buttons[i][j].setEnabled(false);
@@ -136,16 +163,17 @@ public class Connect3Exercise extends AppCompatActivity {
     }
 
     private void resetGame() {
+        // Reset game state
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 buttons[i][j].setText("");
-                buttons[i][j].setTextColor(Color.BLACK);
+                buttons[i][j].setBackground(getDrawable(R.drawable.btn_empty));
                 buttons[i][j].setEnabled(true);
             }
         }
-
         player1Turn = true;
         roundCount = 0;
-        textViewPlayer.setText("Player 1's Turn");
+        textViewPlayer.setText("Black's Turn");
     }
+
 }
