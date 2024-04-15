@@ -12,12 +12,17 @@
         android:theme="@style/Theme.AndroidProjectCollection"
         tools:targetApi="31">
         <activity
+            android:name=".PassingIntentsExercise2"
+            android:exported="false" />
+        <activity
+            android:name=".PassingIntentsExercise"
+            android:exported="false" />
+        <activity
             android:name=".Connect3Exercise"
             android:exported="false" />
         <activity
             android:name=".CalculatorExercise"
-            android:exported="false" />
-        <!-- Buttons -->
+            android:exported="false" /> <!-- Buttons -->
         <activity
             android:name=".ButtonExercise"
             android:exported="false" /> <!-- Instagram -->
