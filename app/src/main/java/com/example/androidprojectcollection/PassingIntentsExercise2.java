@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class PassingIntentsExercise2 extends AppCompatActivity {
     Button btnFinish;
-    TextView tFname, tLname, tGender, tBdate, tPnum, tEmail;
+    TextView tFname, tLname, tGender, tBdate, tPnum, tEmail, tAddress, tCity, tState, tYear, tPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,11 @@ public class PassingIntentsExercise2 extends AppCompatActivity {
         tBdate = findViewById(R.id.textBirthDate);
         tPnum = findViewById(R.id.textPhoneNumber);
         tEmail = findViewById(R.id.textEmailAddress);
+        tAddress = findViewById(R.id.textAddress); // New
+        tCity = findViewById(R.id.textCity);
+        tState = findViewById(R.id.textState);
+        tYear = findViewById(R.id.textYear);
+        tPassword = findViewById(R.id.textPassword);
         btnFinish = findViewById(R.id.btnReturn);
 
         Intent intent = getIntent();
@@ -33,6 +38,11 @@ public class PassingIntentsExercise2 extends AppCompatActivity {
         String bdate = intent.getStringExtra("bdate_key");
         String pnum = intent.getStringExtra("pnum_key");
         String email = intent.getStringExtra("eadd_key");
+        String address = intent.getStringExtra("add_key");
+        String city = intent.getStringExtra("city_key");
+        String state = intent.getStringExtra("state_key");
+        String year = intent.getStringExtra("year_key");
+        String pwd = intent.getStringExtra("pwd_key");
 
         tFname.setText(fname);
         tLname.setText(lname);
@@ -40,6 +50,11 @@ public class PassingIntentsExercise2 extends AppCompatActivity {
         tBdate.setText(bdate);
         tPnum.setText(pnum);
         tEmail.setText(email);
+        tAddress.setText(address);
+        tCity.setText(city);
+        tState.setText(state);
+        tYear.setText(year);
+        tPassword.setText(pwd);
 
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override

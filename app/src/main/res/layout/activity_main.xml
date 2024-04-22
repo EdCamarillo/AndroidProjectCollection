@@ -98,14 +98,14 @@
                 android:textColor="#e4dff1 " />
 
             <Button
-                android:id="@+id/btnFragmentsExercise"
+                android:id="@+id/btnMenuExercise"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="#3F3D45"
                 android:padding="20dp"
-                android:text="Fragments"
+                android:text="Menu Exercise"
                 android:textColor="#e4dff1 " />
         </LinearLayout>
 
