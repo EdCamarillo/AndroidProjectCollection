@@ -6,16 +6,20 @@
         android:title="Change">
         <menu>
             <item
-                android:id="@+id/mItemTurnRound"
-                android:title="Turn Round" />
+                android:id="@+id/mItemChangeShape"
+                android:title="Change Shape" />
             <item
-                android:id="@+id/mItemChangeColor"
-                android:title="Change Color" />
+                android:id="@+id/mItemChangeTextColor"
+                android:title="Change Text Color" />
             <item
-                android:id="@+id/mItemChangeSize"
-                android:title="Change Size" />
-            <item android:title="Item" />
-            <item android:title="Item" />
+                android:id="@+id/mItemChangeTextSize"
+                android:title="Change Text Size" />
+            <item
+                android:id="@+id/mItemChangeButtonColor"
+                android:title="Change Button Color" />
+            <item
+                android:id="@+id/mItemChangeButtonSize"
+                android:title="Change Button Size" />
         </menu>
     </item>
     <item
