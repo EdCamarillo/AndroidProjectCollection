@@ -12,9 +12,12 @@
         android:theme="@style/Theme.AndroidProjectCollection"
         tools:targetApi="31">
         <activity
-            android:name=".MenuExercise"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:name=".MapsExercise"
             android:exported="false" />
+        <activity
+            android:name=".MenuExercise"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
             android:name=".PassingIntentsExercise2"
             android:exported="false" />
