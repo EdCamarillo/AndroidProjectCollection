@@ -14,66 +14,45 @@
         tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="20dp">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/imageButton1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            app:srcCompat="@drawable/cebu_ocean_park" />
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/cebu_ocean_park" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/nustar_resort" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/imageButton2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            app:srcCompat="@drawable/nustar_resort" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/shintokuyama_ski_area" />
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/shibuya_crossing" />
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/imageButton3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            app:srcCompat="@drawable/shintokuyama_ski_area" />
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/cover_corp" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/shibuya_crossing" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/cover_corp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
